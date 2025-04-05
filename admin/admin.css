@@ -1,0 +1,92 @@
+.first {
+    background-color: black!important;
+}
+
+.second {
+    color: white!important;
+}
+
+.third {
+    color: red!important;
+}
+
+.fouth {
+    border: black!important;
+}
+
+.fiveth {
+    border: 1px white solid!important;
+}
+
+.sixth {
+    text-transform: none!important;
+}
+
+.seventh {
+    border: 1px red solid!important;
+}
+
+.eight {
+    width: 351px;
+    padding: 14px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    /* padding-left: 40px; */
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    overflow: visible;
+    background-color: black!important;
+    border: 1px white solid!important;
+}
+
+select option:hover {
+    background-color: red!important;
+}
+
+
+
+.fiveth form input[type="text"],
+.fiveth form input[type="password"],
+.fiveth form input[type="number"],
+.fiveth form input[type="file"] {
+    width: 351px;
+    padding: 14px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    /* padding-left: 40px; */
+    font-size: 16px;
+    border-radius: 8px;
+    color: white!important;
+    overflow: visible;
+    background-color: black!important;
+    border: 1px solid white!important;
+}
+.fiveth form input[type="file"]:hover {
+    border: 1px solid white!important;
+}
+
+
+
+.fiveth form textarea {
+    width: 351px;
+    padding: 14px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    /* padding-left: 40px; */
+    font-size: 16px;
+    border-radius: 8px;
+    color: white!important;
+    overflow: visible;
+    background-color: black!important;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white!important;
+
+    font-size: 16px;
+    opacity: 1;
+
+    /* Firefox */
+}

@@ -1,6 +1,11 @@
 :root {
   --primary: red;
   --bg: #010101;
+  --text: #fff;
+  --shadow: rgba(1, 1, 1, 0.8);
+  --input: #ddd;
+  --disable: #999;
+  --contact: #222;
 }
 
 * {
@@ -19,7 +24,7 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--bg);
-  color: #fff;
+  color: var(--text);
 }
 
 /* Navbar */
@@ -28,8 +33,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.4rem 7%;
-  background-color: rgba(1, 1, 1, 0.8);
-  border-bottom: 1px solid #513c28;
+  background-color: var(--shadow);
+  border-bottom: 1px solid var(--primary);
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +45,7 @@ body {
 .navbar .navbar-logo {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   font-style: italic;
 }
 
@@ -49,7 +54,7 @@ body {
 }
 
 .navbar .navbar-nav a {
-  color: #fff;
+  color: var(--text);
   display: inline-block;
   font-size: 1.3rem;
   margin: 0 1rem;
@@ -73,7 +78,7 @@ body {
 }
 
 .navbar .navbar-extra a {
-  color: #fff;
+  color: var(--text);
   margin: 0 0.5rem;
 }
 
@@ -90,7 +95,7 @@ body {
   position: absolute;
   top: 100%;
   right: 7%;
-  background-color: #fff;
+  background-color: var(--text);
   width: 50rem;
   height: 5rem;
   display: flex;
@@ -128,7 +133,7 @@ body {
 #shopping-cart-button .quantity-badge {
   display: inline-block;
   padding: 1px 5px;
-  background-color: red;
+  background-color: var(--primary);
   border-radius: 6px;
   font-size: 0.8rem;
   position: absolute;
@@ -143,7 +148,7 @@ body {
   height: 100vh;
   width: 35rem;
   padding: 0 1.5rem;
-  background-color: #fff;
+  background-color: var(--text);
   color: var(--bg);
   transition: 0.3s;
 }
@@ -158,7 +163,7 @@ body {
   align-items: center;
   gap: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px dashed #666;
+  border-bottom: 1px dashed var(--bg);
   position: relative;
 }
 
@@ -182,8 +187,8 @@ body {
   padding: 2px 5px;
   cursor: pointer;
   margin: 0 8px;
-  background-color: black;
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
   font-weight: bold;
   font-size: 1.1rem;
 }
@@ -199,7 +204,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  border-top: 1px dashed black;
+  border-top: 1px dashed var(--bg);
   margin-top: 1rem;
   padding: 1rem;
 }
@@ -227,7 +232,7 @@ body {
 }
 
 .form-container input {
-  background-color: #ddd;
+  background-color: var(--input);
   padding: 5px;
   margin-bottom: 10px;
   font-size: 1rem;
@@ -236,8 +241,8 @@ body {
 
 .form-container .checkout {
   padding: 6px 14px;
-  background-color: royalblue;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text);
   font-weight: bold;
   font-size: 1rem;
   border-radius: 20px;
@@ -246,7 +251,7 @@ body {
 }
 
 .form-container .checkout.disabled {
-  background-color: #999;
+  background-color: var(--disable);
   cursor: not-allowed;
 }
 
@@ -306,7 +311,7 @@ body {
 
 .hero .content h1 {
   font-size: 5em;
-  color: #fff;
+  color: var(--text);
   text-shadow: 1px 1px 3px rgba(1, 1, 4, 2.5);
   line-height: 1.2;
 }
@@ -329,7 +334,7 @@ body {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.4rem;
-  color: #fff;
+  color: var(--text);
   background-color: var(--primary);
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
@@ -447,7 +452,7 @@ body {
 
 .products .product-card {
   text-align: center;
-  border: 1px solid #666;
+  border: 1px solid var(--input);
   padding: 2rem;
 }
 
@@ -460,9 +465,9 @@ body {
 .products .product-icons a {
   width: 4rem;
   height: 4rem;
-  color: #fff;
+  color: var(--text);
   margin: 0.3rem;
-  border: 1px solid #666;
+  border: 1px solid var(--input);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -505,7 +510,7 @@ body {
 .contact .row {
   display: flex;
   margin-top: 2rem;
-  background-color: #222;
+  background-color: var(--contact);
 }
 
 .contact .row .map {
@@ -610,6 +615,7 @@ footer .credit a {
   border: 1px solid #666;
   width: 80%;
   animation: animateModal 0.5s;
+  overflow-y: scroll;
 }
 
 /* Modal Animation */
@@ -997,6 +1003,12 @@ footer .credit a {
 @media (max-width: 450px) {
   html {
     font-size: 55%;
+  }
+  .about .row .about-img video {
+    width: 60%;
+    height: 400px;
+    margin-bottom: 1px;
+    margin-left: 40px;
   }
 }
 

@@ -42,15 +42,17 @@ document.addEventListener('click', function (e) {
 });
 
 // Modal Box
-document.addEventListener('DOMContentLoaded', () => {
-  const itemDetailModal = document.querySelector('#item-detail-modal');
-  const itemDetailButton = document.querySelector('#button-trigger');
+const itemDetailModal = document.querySelector('#item-detail-modal');
 
-itemDetailButton.onclick = (e) => {
-    itemDetailModal.style.display = 'flex';
-    e.preventDefault();
-  };
+// Event delegation: Tambahkan event listener ke parent yang sudah ada (misalnya `document`)
+document.addEventListener('click', function (e) {
+    if (e.target.closest('.item-detail-button')) {
+        itemDetailModal.style.display = 'flex';
+        e.preventDefault();
+    }
 });
+
+
 
 
 // klik tombol close modal
@@ -106,20 +108,3 @@ formInputs.forEach((i) => {
     }
   }); 
 });
-
-async function getData() {
-  try {
-      let response = await fetch("php/getFilm.php");
-      if (!response.ok) {
-          throw new Error("Gagal mengambil data");
-      }
-      let data = await response.json();
-      console.log(data);
-  } catch (error) {
-      console.error("Terjadi kesalahan:", error);
-  }
-}
-
-getData();
-
-

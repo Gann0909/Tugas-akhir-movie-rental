@@ -117,6 +117,7 @@ function registrasi($data) {
         $harga = htmlspecialchars($data["harga"]);
         $rating = htmlspecialchars($data["rating"]);
         $tahun = htmlspecialchars($data["tahun"]);
+        $deskripsi = htmlspecialchars($data["deskripsi"]);
        
         // upload gambar
     
@@ -133,7 +134,7 @@ function registrasi($data) {
         // query insert data
         $query = "INSERT INTO film
                     VALUES
-                    ('', '$judul', '$genre', '$harga', '$rating', '$gambar', '$tahun')";
+                    ('', '$judul', '$genre', '$harga', '$rating', '$gambar', '$tahun', '$deskripsi')";
     
                     //$result = mysqli_query( $conn, $query );
                    mysqli_query($conn, $query);
@@ -321,6 +322,11 @@ function registrasi($data) {
                    return mysqli_affected_rows($conn);
     }
     
+    function hapusTransaksi($id) {
+        global $conn;
+        mysqli_query($conn,"DELETE FROM transactions WHERE penyewaan_id = $id");
+        return mysqli_affected_rows($conn);
+    }
     
 ?>
 

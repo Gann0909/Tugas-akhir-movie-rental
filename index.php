@@ -239,8 +239,7 @@ if (isset($_POST["login"])) {
               <use href="img/feather-sprite.svg#shopping-cart" />
             </svg>
           </a>
-          <!-- nanti akan di pakai -->
-          <a href="#" class="item-detail-button" id="button-trigger">
+          <a href="#" class="item-detail-button" @click.prevent="$store.modal.add(item)">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <use href="img/feather-sprite.svg#eye" />
             </svg>
@@ -270,20 +269,20 @@ if (isset($_POST["login"])) {
     </p>
 
     <div class="row">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.321703733716!2d104.50754697423945!3d0.9040161628482005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d96d002b084c61%3A0xc1ca3a40c58adba6!2sROSE%20SEROJA!5e0!3m2!1sid!2sid!4v1737729905180!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.3162085764457!2d104.54147677423941!3d0.9090040628357762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d96c8b61440b13%3A0xdc142cab464b148a!2sSMK%20Negeri%204%20Tanjungpinang!5e0!3m2!1sid!2sid!4v1743475742019!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
       <form action="">
         <div class="input-group">
           <i data-feather="user"></i>
-          <input type="text" placeholder="nama">
+          <input type="text" placeholder="Nama">
         </div>
         <div class="input-group">
           <i data-feather="mail"></i>
-          <input type="text" placeholder="email">
+          <input type="text" placeholder="Email">
         </div>
         <div class="input-group">
           <i data-feather="phone"></i>
-          <input type="text" placeholder="no hp">
+          <input type="text" placeholder="No. HP">
         </div>
         <button type="submit" class="btn" >Kirim Pesan</button>
       </form>
@@ -342,27 +341,27 @@ if (isset($_POST["login"])) {
   <!-- Footer end -->
 
   <!-- Modal Box Item Detail start -->
-   <!-- untuk saat ini  belum di pakai -->
-  <div class="modal" id="item-detail-modal">
+  <div class="modal" id="item-detail-modal" x-data>
     <div class="modal-container">
       <a href="#" class="close-icon"><i data-feather="x"></i></a>
+      <template x-for="(item, index) in $store.modal.items" x-keys="index">
       <div class="modal-content">
-        <img src="img/products/1.jpg" alt="Product 1">
+        <img :src="`img/${item.gambar}`" :alt="item.judul_film">
         <div class="product-content">
-          <h3>Product 1</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, tenetur cupiditate facilis obcaecati
-            ullam maiores minima quos perspiciatis similique itaque, esse rerum eius repellendus voluptatibus!</p>
-          <div class="product-stars">
+          <h3 x-text="item.judul_film" id="judul"></h3>
+          <p x-text="item.deskripsi"></p>
+          <div class="product-stars" x-html="$store.modal.generateStars()">
+            <!-- <i data-feather="star" class="star-full"></i>
             <i data-feather="star" class="star-full"></i>
             <i data-feather="star" class="star-full"></i>
             <i data-feather="star" class="star-full"></i>
-            <i data-feather="star" class="star-full"></i>
-            <i data-feather="star"></i>
+            <i data-feather="star"></i> -->
           </div>
-          <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-          <a href="#"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
+          <div class="product-price"><span x-text="rupiah(item.harga_sewa)"></span></div>
+          <a href="#products" @click="$store.cart.add(item)"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
         </div>
       </div>
+      </template>
     </div>
   </div>
   <!-- Modal Box Item Detail end -->

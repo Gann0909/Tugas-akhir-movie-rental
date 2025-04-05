@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$sql = "SELECT film_id, judul_film, gambar, rating, harga_sewa FROM film";
+$sql = "SELECT film_id, judul_film, gambar, rating, harga_sewa, deskripsi FROM film";
 $result = $conn->query($sql);
 
 $products = [];
