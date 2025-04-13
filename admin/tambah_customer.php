@@ -59,8 +59,8 @@ if ( isset( $_POST["submit"] ) ) {
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon" href="../img/logo1.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

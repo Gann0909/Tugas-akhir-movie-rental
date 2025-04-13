@@ -1,6 +1,7 @@
 <?php 
 session_start();
 if (!isset($_SESSION["login"])) {
+  // session === false
   header("Location: ../index.php");
   exit;
 }
@@ -55,7 +56,7 @@ if ($notification) {
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../img/logo1.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

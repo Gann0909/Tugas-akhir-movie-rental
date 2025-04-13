@@ -39,7 +39,7 @@ $customers = query("SELECT * FROM customers");
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../img/logo1.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -173,10 +173,6 @@ $customers = query("SELECT * FROM customers");
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <a class="dropdown-item second" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
                     <li>
                       <a class="dropdown-item second" href="../logout.php">
                         <i class="bx bx-power-off me-2"></i>

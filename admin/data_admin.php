@@ -46,8 +46,8 @@ $users = query("SELECT * FROM users");
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon" href="../img/logo1.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -183,10 +183,6 @@ $users = query("SELECT * FROM users");
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                      <a class="dropdown-item second" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
                     </li>
                     <li>
                     </li>
