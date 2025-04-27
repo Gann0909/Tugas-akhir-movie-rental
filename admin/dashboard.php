@@ -12,10 +12,6 @@ if ($notification) {
 }
 
 if (empty($_SESSION["username"])) {
-    $_SESSION['notification'] = [
-        'type' => 'danger',
-        'message' => 'Silahkan Login Terlebih Dahulu!'
-    ];
     header('Location: ../index.php');
     exit();
 }
@@ -208,7 +204,7 @@ $transactions = query("SELECT * FROM transactions");
   <div id="notifikasi" class="bs-toast toast fade bg-<?= $notification['type'] ?> position-absolute m-3 end-0" role="alert" data-bs-autohide="true">
     <div class="toast-header">
       <i class="bx bx-bell me-2"></i>
-      <strong class="me-auto"><?= $notification['title'] ?? 'Notifikasi' ?></strong>
+      <strong class="me-auto"><?='Notifikasi' ?></strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
@@ -257,7 +253,7 @@ $transactions = query("SELECT * FROM transactions");
                     </thead>
                     <tbody class="fouth">
                       <tr>
-                        <th scope="row" class="second"><?= $i++ ?></th>
+                        <th scope="row" class="second"><?= $i ?></th>
                         <td class="second"><?= $row["penyewaan_id"]?></td>
                         <td class="second"><?= $row["film_id"]?></td>
                         <td class="second"><?= $row["id"]?></td>

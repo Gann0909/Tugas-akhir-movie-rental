@@ -106,7 +106,7 @@ if ( isset( $_POST["submit"] ) ) {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="#" class="app-brand-link gap-2">
+                <a href="../index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <img src="../img/logo1.png" alt="Logo" width="80px">
                   </span>

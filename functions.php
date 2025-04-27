@@ -142,7 +142,6 @@ function registrasi($data) {
                    return mysqli_affected_rows($conn);
     }
     
-    //<div style-position:absolute;top:0;bottom:0;left:0;right:0;background-color:black;font-size:100px;color:red;text-align:center;>HAHAHA ANDA TELAH DI HACK!!!!</div>
     
     function uploadGambarFilm() {
         $namaFile = $_FILES['gambar']['name'];
@@ -304,20 +303,7 @@ function registrasi($data) {
                     transaction_status = '$status'
                     WHERE id = $id";
 
-                      //$result = mysqli_query( $conn, $query );
                    mysqli_query($conn, $query);
-
-                //    if (mysqli_query($conn, $query)) {
-                //     $_SESSION['notification'] = [
-                //         'type' => 'primary',
-                //         'message' => 'Data Customer Berhasil Diganti'
-                //     ];
-                // } else {
-                //     $_SESSION['notification'] = [
-                //         'type' => 'danger',
-                //         'message' => 'Data Customer Gagal Diganti: ' . mysqli_error($conn)
-                //         ];
-                // }
     
                    return mysqli_affected_rows($conn);
     }

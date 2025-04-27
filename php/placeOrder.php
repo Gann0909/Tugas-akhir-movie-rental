@@ -5,30 +5,30 @@ require_once dirname(__FILE__) . '/midtrans-php-master/Midtrans.php';
 use Midtrans\Config;
 use Midtrans\Snap;
 
-// Konfigurasi Midtrans
+// konfigurasi Midtrans
 Config::$serverKey = 'SB-Mid-server-IEH6f19ygbxEWAxS75Ua6wQ6';
 Config::$isProduction = false;
 Config::$isSanitized = true;
 Config::$is3ds = true;
 
-// Pastikan request menggunakan metode POST
+// mastiin request pake metode POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     die("Invalid request method.");
 }
 
-// Ambil data dari POST
+// ngambil data dari POST
 $total = isset($_POST["total"]) ? (float) $_POST["total"] : 0;
 $items = isset($_POST["items"]) ? json_decode($_POST["items"], true) : [];
 $name = $_POST["name"] ?? "";
 $email = $_POST["email"] ?? "";
 $phone = $_POST["phone"] ?? "";
 
-// Validasi data
+// validasi data
 if (empty($items) || $total <= 0 || empty($name) || empty($email)) {
     die("Invalid transaction data.");
 }
 
-// Hitung ulang total dari item_details untuk memastikan kesesuaian
+// ngitung ulang total dari item_details buat mastiin sesuai atau nggak
 $calculatedTotal = 0;
 foreach ($items as &$item) {
     if (!isset($item["name"], $item["price"], $item["quantity"])) {
@@ -39,7 +39,7 @@ foreach ($items as &$item) {
     $calculatedTotal += $item["price"] * $item["quantity"];
 }
 
-// Jika total dari item_details tidak cocok dengan transaction_details.gross_amount
+// kalau total dari item_details ga cocok sama transaction_details.gross_amount
 if ($calculatedTotal != $total) {
     die("Total amount mismatch.");
 }
@@ -49,7 +49,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$order_id = rand(); // Buat order ID unik
+$order_id = rand(); // bikin order ID unik
 $customer_name = $_POST["name"] ?? "";
 $customer_email = $_POST["email"] ?? "";
 $customer_phone = $_POST["phone"] ?? "";
@@ -61,7 +61,7 @@ $stmt->execute();
 $customer_id = $conn->insert_id;
 $stmt->close();
 
-// Simpan data transaksi ke database
+// buat nyimpen data transaksi ke db
 foreach ($items as $item) {
     $film_id = $item["id"];
     $nama_film = $item["name"];
@@ -77,11 +77,17 @@ foreach ($items as $item) {
 }
 
 
-// Buat parameter transaksi
+// buat bikin parameter transaksi
 $params = [
     'transaction_details' => [
         'order_id' => $order_id,
         'gross_amount' => $total,
+    ],
+    "callbacks" => [
+  "finish" => "https://65ea-106-0-48-3.ngrok-free.app/web-movie-rental/callbacks/finish.php",
+  "unfinish" => "https://65ea-106-0-48-3.ngrok-free.app/web-movie-rental/callbacks/unfinish.php",
+  "error" => "https://65ea-106-0-48-3.ngrok-free.app/web-movie-rental/callbacks/error.php",
+
     ],
     'item_details' => $items,
     'customer_details' => [
@@ -91,10 +97,7 @@ $params = [
     ],
 ];
 
-// Debug sebelum mengirim ke Midtrans
-// echo '<pre>'; print_r($params); echo '</pre>'; exit;
-
-// Ambil Snap Token
+// ngambil Snap Token
 $snapToken = Snap::getSnapToken($params);
 echo $snapToken;
 ?>

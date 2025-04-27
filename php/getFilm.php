@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "movierental"; // Ganti dengan nama database kamu
+$dbname = "movierental";
 
 $conn = new mysqli($host, $user, $password, $dbname);
 

@@ -24,7 +24,6 @@ if (isset($_POST["register"])) {
         exit();
     }
 }
-$title = "Register";
 $notification = $_SESSION["notification"] ?? null;
 if ($notification) {
     unset($_SESSION['notification']);
@@ -121,7 +120,7 @@ if ($notification) {
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="../index.php" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <img src="../img/logo1.png" alt="Logo" width="80px">
                   </span>
@@ -142,7 +141,7 @@ if ($notification) {
                     type="text"
                     class="form-control fiveth"
                     id="username"
-                    name="username"
+                   name="username" 
                     placeholder="Enter your username"
                     autocomplete="off"
                     value=""
