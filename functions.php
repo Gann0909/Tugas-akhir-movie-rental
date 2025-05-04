@@ -1,26 +1,31 @@
 <?php
 // koneksi ke database
 $conn = mysqli_connect("localhost","root","","movierental");
-
+// query untuk menyimpan data dan memasukkannya ke dalam format object
 function query($query) {
+    // mengambil variabel koneksi
     global $conn;
+    // menyimpan hasil query sesuai dengan nilai dari variabel $query ke variabel $result
     $result = mysqli_query($conn, $query);
     $rows = [];
+    // memasukkan isi dari $result ke object $rows
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
 }
+// mengembalikan isi dari $rows
 return $rows;
 }
-
+// function untuk proses registrasi
 function registrasi($data) {
+    // mengambil variabel koneksi
     global $conn;
-    
+    // menampung isi dari $data kedalam variabel
     $username = strtolower(stripslashes($data["username"]));
     $password = mysqli_real_escape_string ($conn, $data["password"]);
     $password2 = mysqli_real_escape_string ($conn, $data["password2"]);
 
     // cek username sudah ada atau belum
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $result = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
 
     if (mysqli_fetch_assoc($result) ) {
         $_SESSION['notification'] = [
@@ -42,7 +47,7 @@ function registrasi($data) {
         // enkripsi password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        if (mysqli_query($conn, "INSERT INTO users VALUES ('', '$username', '$password')")) {
+        if (mysqli_query($conn, "INSERT INTO admin (username, password) VALUES ('$username', '$password')")) {
             $_SESSION['notification'] = [
                 'type' => 'primary',
                 'message' => 'Data Admin Berhasil Ditambahkan'
@@ -56,7 +61,7 @@ function registrasi($data) {
 
         return mysqli_affected_rows( $conn );
     }
-
+// function untuk mengubah data 
     function ubah($data) {
         global $conn;
         // ambil data dari tiap elemen dalam form
@@ -78,17 +83,17 @@ function registrasi($data) {
             $password = password_hash($password, PASSWORD_DEFAULT);
     
     
-        // query insert data
-        $query = "UPDATE users SET
+        // query update data
+        $query = "UPDATE admin SET
                     username = '$username',
                     password = '$password'
                     WHERE id = $id";
                     
     
-                    //$result = mysqli_query( $conn, $query );
-                   mysqli_query($conn, $query);
+                    $result = mysqli_query( $conn, $query );
+                //    mysqli_query($conn, $query);
 
-                   if (mysqli_query($conn, $query)) {
+                   if ($result) {
                     $_SESSION['notification'] = [
                         'type' => 'primary',
                         'message' => 'Data Admin Berhasil Diganti'
@@ -102,13 +107,13 @@ function registrasi($data) {
     
                    return mysqli_affected_rows($conn);
     }
-
+// function untuk menghapus data
     function hapus($id) {
         global $conn;
-        mysqli_query($conn,"DELETE FROM users WHERE id = $id");
+        mysqli_query($conn,"DELETE FROM admin WHERE id = $id");
         return mysqli_affected_rows($conn);
     }
-
+// function untuk menambah data film
     function tambahFilm($data) {
         global $conn;
         // ambil data dari tiap elemen dalam form
@@ -142,8 +147,9 @@ function registrasi($data) {
                    return mysqli_affected_rows($conn);
     }
     
-    
+    // function untuk menangani data gambar
     function uploadGambarFilm() {
+        // memasukkan data gambar kedalam variable 
         $namaFile = $_FILES['gambar']['name'];
         $ukuranFile = $_FILES['gambar']['size'];
         $error = $_FILES['gambar']['error'];
@@ -200,7 +206,7 @@ function registrasi($data) {
     
         return $namaFileBaru;
     }
-
+// function untuk mengubah data film
     function ubahFilm($data) {
         global $conn;
         // ambil data dari tiap elemen dalam form
@@ -251,13 +257,13 @@ function registrasi($data) {
     
                    return mysqli_affected_rows($conn);
     }
-
+// function untuk menghapus film
     function hapusFilm($id) {
         global $conn;
         mysqli_query($conn,"DELETE FROM film WHERE film_id = $id");
         return mysqli_affected_rows($conn);
     }
-
+// function untuk menambah data customer
     function tambahCustomer($data) {
         global $conn;
         // ambil data dari tiap elemen dalam form
@@ -277,13 +283,13 @@ function registrasi($data) {
         return $affected_rows;
 
     }
-
+ //   function untuk menghapus customer
     function hapusCustomer($id) {
         global $conn;
         mysqli_query($conn,"DELETE FROM customers WHERE id = $id");
         return mysqli_affected_rows($conn);
     }
-
+//   function untuk mengubah data customer
     function ubahCustomer($data) {
         global $conn;
         // ambil data dari tiap elemen dalam form
@@ -307,7 +313,7 @@ function registrasi($data) {
     
                    return mysqli_affected_rows($conn);
     }
-    
+    //   function untuk menghapus data transaksi
     function hapusTransaksi($id) {
         global $conn;
         mysqli_query($conn,"DELETE FROM transactions WHERE penyewaan_id = $id");

@@ -12,9 +12,9 @@ require '../functions.php';
 
 $id = $_GET['id'];
 
-// Query data mahasiswa berdasarkan id
+// Query data admin berdasarkan id
 
-$user = query("SELECT * FROM users WHERE id = '$id'")[0];
+$admin = query("SELECT * FROM admin WHERE id = '$id'")[0];
 
 
 // cek apakah tombol submit sudah ditakan atau belum
@@ -31,7 +31,7 @@ if ( isset( $_POST["submit"] ) ) {
 } else {
   $_SESSION['notification'] = [
     'type' => 'danger',
-    'message' => 'Data Admin Gagal Dihapus: ' . mysqli_error($conn)
+    'message' => 'Data Admin Gagal Diganti: ' . mysqli_error($conn)
   ];
   header('Location: data_admin.php');
         exit();
@@ -119,7 +119,7 @@ if ( isset( $_POST["submit"] ) ) {
 
               <form id="formAuthentication" class="mb-3" action="" method="POST">
                 <div class="mb-3">
-                <input type="hidden" name="id" value="<?= $user['id']; ?>">
+                <input type="hidden" name="id" value="<?= $admin['id']; ?>">
                   <label for="username" class="form-label second">Username</label>
                   <input
                     type="text"
@@ -127,7 +127,7 @@ if ( isset( $_POST["submit"] ) ) {
                     id="username"
                     name="username"
                     placeholder="Enter your username"
-                    value="<?= $user["username"]; ?>"
+                    value="<?= $admin["username"]; ?>"
                     autofocus
                   />
                 </div>
@@ -141,7 +141,7 @@ if ( isset( $_POST["submit"] ) ) {
                       class="form-control fiveth"
                       name="password"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      value="<?= $user["password"]; ?>"
+                      value="<?= $admin["password"]; ?>"
                       aria-describedby="password"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>

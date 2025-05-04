@@ -22,7 +22,7 @@ if (empty($_SESSION["username"])) {
 }
 $name = $_SESSION["username"];
 
-$users = query("SELECT * FROM users");
+$admins = query("SELECT * FROM admin");
 
 ?>
 <!DOCTYPE html>
@@ -247,7 +247,7 @@ $users = query("SELECT * FROM users");
                         <th class="second">Actions</th>
                       </tr>
                       <?php $i = 1; ?>
-        <?php foreach( $users as $row ): ?>
+        <?php foreach( $admins as $row ): ?>
                     </thead>
                     <tbody class="fouth">
                       <tr>

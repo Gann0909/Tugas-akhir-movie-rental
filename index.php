@@ -8,7 +8,7 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $result = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username'");
     // cek username
     if (mysqli_num_rows($result) === 1) {
         // cek password

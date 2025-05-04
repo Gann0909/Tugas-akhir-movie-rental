@@ -43,18 +43,18 @@ foreach ($items as &$item) {
 if ($calculatedTotal != $total) {
     die("Total amount mismatch.");
 }
-
+// Koneksi ke database
 $conn = new mysqli("localhost", "root", "", "movierental");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+// memasukkan data kedalam variabel 
 $order_id = rand(); // bikin order ID unik
 $customer_name = $_POST["name"] ?? "";
 $customer_email = $_POST["email"] ?? "";
 $customer_phone = $_POST["phone"] ?? "";
 $transaction_status = "pending";
-
+// query insert kedatabase
 $stmt = $conn->prepare("INSERT INTO customers (order_id, customer_name, customer_email, customer_phone, transaction_status) VALUES (?, ?, ?, ?, ?)");
 $stmt->bind_param("sssss", $order_id, $customer_name, $customer_email, $customer_phone, $transaction_status);
 $stmt->execute();
@@ -69,7 +69,7 @@ foreach ($items as $item) {
     $total_price = $item["price"] * $item["quantity"];
     $tanggal = "-";
 
-    
+    // query insert kedatabase
     $stmt = $conn->prepare("INSERT INTO transactions (film_id, id, nama_customer, nama_film, tanggal_sewa, tanggal_kembali, status, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssss", $film_id, $customer_id, $customer_name, $nama_film, $tanggal, $tanggal, $transaction_status, $quantity);
     $stmt->execute();
